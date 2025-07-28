@@ -1,27 +1,26 @@
 <?php
 // Разрешаем CORS
-header("Access-Control-Allow-Origin: http://localhost:3000");
+header("Access-Control-Allow-Origin: https://codelab-frontend-production.up.railway.app");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Content-Type: application/json");
 
-// Отдаём 200 OK для preflight (OPTIONS) запроса
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
     exit();
 }
 
 require_once __DIR__ . '/config/db.php';
-require_once __DIR__ . '/../vendor/autoload.php'; // Подключаем JWT библиотеку
+require_once __DIR__ . '/../vendor/autoload.php';
 
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
 // Настройки JWT
 $jwtConfig = require_once __DIR__ . "/config/jwt.php";
-$secretKey = $jwtConfig['secret']; // Замени на более надёжный ключ
-$issuer = "localhost";
-$expireTime = 3600; // токен будет действовать 1 час
+$secretKey = $jwtConfig['secret'];
+$issuer = "https://codelab-backend-production.up.railway.app";
+$expireTime = 3600;
 
 // Получаем JSON из тела запроса
 $data = json_decode(file_get_contents("php://input"), true);
