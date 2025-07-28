@@ -1,0 +1,17 @@
+{
+    "name": "vito6ha/code-store-project",
+    "autoload": {
+        "psr-4": {
+            "Vito6ha\\CodeStoreProject\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Nikita",
+            "email": "nikita.smirnovs_2@edu.rtu.lv"
+        }
+    ],
+    "require": {
+        "vendor/firebase/php-jwt": "^6.11"
+    }
+}
