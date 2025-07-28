@@ -1,26 +1,22 @@
 <?php
+
 class Database {
     private static $pdo = null;
 
     public static function getConnection() {
         if (self::$pdo === null) {
-            $dbUrl = getenv('DATABASE_URL');
+            $host = getenv('MYSQLHOST');
+            $port = getenv('MYSQLPORT') ?: 3306;
+            $user = getenv('MYSQLUSER');
+            $pass = getenv('MYSQLPASSWORD');
+            $db = getenv('MYSQLDATABASE');
 
-            if (!$dbUrl) {
-                error_log('Missing DATABASE_URL environment variable.');
-                throw new RuntimeException('Ошибка: DATABASE_URL не настроена для подключения к БД.');
+            if (!$host || !$user || !$pass || !$db) {
+                error_log('Некоторые переменные окружения не заданы.');
+                throw new RuntimeException('Ошибка: переменные окружения для подключения к БД отсутствуют.');
             }
 
-            $urlParts = parse_url($dbUrl);
-
-            $host = $urlParts['host'];
-            $port = $urlParts['port'] ?? 3306; 
-            $user = $urlParts['user'];
-            $pass = $urlParts['pass'];
-            $db = ltrim($urlParts['path'], '/'); 
-
             $charset = 'utf8mb4';
-
             $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=$charset";
 
             $options = [
@@ -32,7 +28,7 @@ class Database {
             try {
                 self::$pdo = new PDO($dsn, $user, $pass, $options);
             } catch (PDOException $e) {
-                error_log('Ошибка подключения к БД: ' . $e->getMessage() . ' (DSN: ' . $dsn . ')');
+                error_log('Ошибка подключения к БД: ' . $e->getMessage());
                 throw new RuntimeException('Ошибка подключения к БД: ' . $e->getMessage());
             }
         }
