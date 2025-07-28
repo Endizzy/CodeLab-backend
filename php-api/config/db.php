@@ -4,17 +4,20 @@ class Database {
 
     public static function getConnection() {
         if (self::$pdo === null) {
+            $dbUrl = getenv('DATABASE_URL');
 
-            $host = getenv('MYSQLHOST');           
-            $port = getenv('MYSQLPORT');           
-            $db = getenv('MYSQL_DATABASE');        
-            $user = getenv('MYSQLUSER');           
-            $pass = getenv('MYSQL_ROOT_PASSWORD'); 
-
-            if (!$host || !$port || !$db || !$user || !$pass) {
-                error_log('Missing one or more MySQL environment variables.');
-                throw new RuntimeException('Ошибка: Не настроены переменные окружения для подключения к БД.');
+            if (!$dbUrl) {
+                error_log('Missing DATABASE_URL environment variable.');
+                throw new RuntimeException('Ошибка: DATABASE_URL не настроена для подключения к БД.');
             }
+
+            $urlParts = parse_url($dbUrl);
+
+            $host = $urlParts['host'];
+            $port = $urlParts['port'] ?? 3306; 
+            $user = $urlParts['user'];
+            $pass = $urlParts['pass'];
+            $db = ltrim($urlParts['path'], '/'); 
 
             $charset = 'utf8mb4';
 
