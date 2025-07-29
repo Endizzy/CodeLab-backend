@@ -13,5 +13,10 @@
     ],
     "require": {
         "firebase/php-jwt": "^6.11"
+    },
+    "scripts": {
+        "start": [
+            "@php -S 0.0.0.0:${PORT:-8000} -t public/php-api"
+        ]
     }
 }
