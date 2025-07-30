@@ -1,0 +1,4 @@
+[build]
+builder = "nixpacks"
+buildCommand = "composer install"
+startCommand = "php -S 0.0.0.0:$PORT -t public"

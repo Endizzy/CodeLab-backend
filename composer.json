@@ -1,20 +1,12 @@
 {
-    "name": "vito6ha/code-store-project",
+    "name": "endizzy/codelab-backend",
+    "require": {
+        "php": "^8.0",
+        "firebase/php-jwt": "^6.3"
+    },
     "autoload": {
         "psr-4": {
-            "Vito6ha\\CodeStoreProject\\": "src/"
+            "App\\": "src/"
         }
-    },
-    "authors": [
-        {
-            "name": "Nikita",
-            "email": "nikita.smirnovs_2@edu.rtu.lv"
-        }
-    ],
-    "require": {
-        "firebase/php-jwt": "^6.11"
-    },
-    "scripts": {
-        "start": "php -S 0.0.0.0:8080 -t public/php-api"
     }
 }
