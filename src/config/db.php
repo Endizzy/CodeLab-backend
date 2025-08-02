@@ -5,6 +5,10 @@ class Database {
 
     public static function getConnection() {
         if (self::$pdo === null) {
+            if (!extension_loaded('pdo_mysql')) {
+                throw new RuntimeException('PDO MySQL extension is not enabled.');
+            }
+
             $host = getenv('MYSQLHOST');
             $port = getenv('MYSQLPORT') ?: 3306;
             $user = getenv('MYSQLUSER');
@@ -12,8 +16,8 @@ class Database {
             $db   = getenv('MYSQLDATABASE');
 
             if (!$host || !$user || !$pass || !$db) {
-                error_log('Отсутствуют переменные окружения для подключения к базе данных.');
-                throw new RuntimeException('Переменные окружения для БД не заданы.');
+                error_log('Missing environment variables for DB connection.');
+                throw new RuntimeException('Environment variables for DB are not set.');
             }
 
             $charset = 'utf8mb4';
@@ -28,8 +32,8 @@ class Database {
             try {
                 self::$pdo = new PDO($dsn, $user, $pass, $options);
             } catch (PDOException $e) {
-                error_log('Ошибка подключения к БД: ' . $e->getMessage());
-                throw new RuntimeException('Ошибка подключения к БД: ' . $e->getMessage());
+                error_log('DB connection error: ' . $e->getMessage());
+                throw new RuntimeException('DB connection error: ' . $e->getMessage());
             }
         }
 
