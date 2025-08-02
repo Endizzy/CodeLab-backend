@@ -11,7 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 require_once __DIR__ . '/../vendor/autoload.php';
-$jwtConfig = require_once __DIR__ . '/config/jwt.php';
+$jwtConfig = require_once __DIR__ . '/../config/jwt.php';
+
 
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;

@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit();
 }
 
-require_once __DIR__ . '/config/db.php'; // Подключение к базе данных
+require_once __DIR__ . '/../config/db.php';
 
 try {
     $pdo = Database::getConnection();

@@ -10,14 +10,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit();
 }
 
-require_once __DIR__ . '/config/db.php';
+require_once __DIR__ . '/../config/db.php';
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
 // Настройки JWT
-$jwtConfig = require_once __DIR__ . "/config/jwt.php";
+$jwtConfig = require_once __DIR__ . "/../config/jwt.php";
 $secretKey = $jwtConfig['secret'];
 $issuer = "https://codelab-backend-production.up.railway.app";
 $expireTime = 3600;
