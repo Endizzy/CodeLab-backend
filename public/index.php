@@ -19,6 +19,9 @@ switch ($request) {
     case '/get_new_users' :
         require __DIR__ . '/../src/api/get_new_users.php';
         break;
+    case '/get-products' :
+        require __DIR__ . '/../src/api/get-products.php';
+        break;
     default:
         http_response_code(404);
         echo json_encode(['error' => 'Not Found']);
