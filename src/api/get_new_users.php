@@ -11,8 +11,7 @@ if (in_array($origin, $allowedOrigins)) {
     header("Access-Control-Allow-Origin: $origin");
 }
 
-// Разрешаем CORS
-header("Access-Control-Allow-Origin: https://codelab-frontend-production.up.railway.app");
+// header("Access-Control-Allow-Origin: https://codelab-frontend-production.up.railway.app");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Content-Type: application/json");
