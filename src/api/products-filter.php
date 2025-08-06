@@ -33,13 +33,11 @@ try {
     $sql = "SELECT * FROM products WHERE 1=1";
     $params = [];
 
-    // Поиск по названию
     if (!empty($search)) {
         $sql .= " AND title LIKE :search";
         $params[':search'] = '%' . $search . '%';
     }
 
-    // Обработка типа фильтра
     switch (strtoupper($type)) {
         case 'POPULAR':
             $sql .= " ORDER BY views DESC";
@@ -66,7 +64,7 @@ try {
             break;
     }
 
-    $sql .= " LIMIT 100"; // ограничим количество результатов
+    $sql .= " LIMIT 100";
 
     $stmt = $pdo->prepare($sql);
     $stmt->execute($params);
