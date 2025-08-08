@@ -44,8 +44,8 @@ try {
             $sql .= " ORDER BY views DESC";
             break;
 
-        case 'NEWEST':
-            $sql .= " ORDER BY createdAt DESC";
+        case 'CODELAB+':
+            $sql .= " AND isPremium = 1";
             break;
 
         case 'CATEGORY':
