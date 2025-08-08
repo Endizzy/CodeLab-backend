@@ -21,35 +21,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit();
 }
 
-$request = $_SERVER['REQUEST_URI'];
+$request = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 switch ($request) {
-    case '/' :
+    case '/':
         echo json_encode(['message' => 'Welcome to CodeLab Backend']);
         break;
 
-    case '/login' :
+    case '/login':
         require __DIR__ . '/../src/api/login.php';
         break;
 
-    case '/register' :
-    case '/registration' :
+    case '/register':
+    case '/registration':
         require __DIR__ . '/../src/api/registration.php';
         break;
 
-    case '/get-user-from-token' :
+    case '/get-user-from-token':
         require __DIR__ . '/../src/api/get-user-from-token.php';
         break;
 
-    case '/get_new_users' :
+    case '/get_new_users':
         require __DIR__ . '/../src/api/get_new_users.php';
         break;
 
-    case '/get-products' :
+    case '/get-products':
         require __DIR__ . '/../src/api/get-products.php';
         break;
 
-    case '/products-filter' :
+    case '/products-filter':
         require __DIR__ . '/../src/api/products-filter.php';
         break;
 
