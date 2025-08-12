@@ -53,6 +53,10 @@ switch ($request) {
         require __DIR__ . '/../src/api/products-filter.php';
         break;
 
+    case '/get-all-users':
+        require __DIR__ . '/../src/api/get-all-users.php';
+        break;
+
     default:
         http_response_code(404);
         echo json_encode(['error' => 'Not Found']);
