@@ -4,7 +4,7 @@ require_once __DIR__ . '/../config/db.php';
 
 try {
     $pdo = Database::getConnection();
-    $stmt = $pdo->prepare("SELECT * FROM users ORDER BY id DESC");
+    $stmt = $pdo->prepare("SELECT * FROM users ORDER BY id ASC");
     $stmt->execute();
     $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

@@ -57,6 +57,10 @@ switch ($request) {
         require __DIR__ . '/../src/api/get-all-users.php';
         break;
 
+    case '/update-user':
+        require __DIR__ . '/../src/api/update-user.php';
+        break;
+
     default:
         http_response_code(404);
         echo json_encode(['error' => 'Not Found']);
