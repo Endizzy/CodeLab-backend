@@ -61,6 +61,10 @@ switch ($request) {
         require __DIR__ . '/../src/api/update-user.php';
         break;
 
+    case '/quiz-game':
+        require __DIR__ . '/../src/api/quiz-game.php';
+        break;
+
     default:
         http_response_code(404);
         echo json_encode(['error' => 'Not Found']);
